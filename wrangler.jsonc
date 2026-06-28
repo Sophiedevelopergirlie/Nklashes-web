@@ -1,0 +1,32 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "nklashes-ke",
+  // Update compatibility_date when you next deploy to get new CF runtime features.
+  // Keep it within ~1 year of today.
+  "compatibility_date": "2026-06-28",
+  "compatibility_flags": ["nodejs_compat"],
+  // Custom server entrypoint (handles error normalisation on top of the default handler)
+  "main": "src/server.ts",
+  "observability": {
+    "enabled": true
+  }
+  // ── Environment variables ───────────────────────────────────────────────────
+  // Add ALL secrets below via the Cloudflare Dashboard:
+  //   Workers & Pages → nklashes-ke → Settings → Variables and Secrets
+  //
+  // VITE_* vars  →  Plain text  (baked into browser bundle at build time)
+  // All others   →  Encrypted Secret
+  //
+  // Required variables:
+  //   SUPABASE_SERVICE_ROLE_KEY        (Encrypted)
+  //   SUPABASE_PUBLISHABLE_KEY         (Encrypted)
+  //   VITE_SUPABASE_PUBLISHABLE_KEY    (Plain text)
+  //   PESAPAL_CONSUMER_KEY             (Encrypted)
+  //   PESAPAL_CONSUMER_SECRET          (Encrypted)
+  //   PESAPAL_EMAIL                    (Encrypted)
+  //   PESAPAL_ENV                      (Encrypted — "live" or "sandbox")
+  //   CALLMEBOT_PHONE                  (Encrypted)
+  //   CALLMEBOT_APIKEY                 (Encrypted)
+  //
+  // See DEPLOY.md for the full list and instructions.
+}
